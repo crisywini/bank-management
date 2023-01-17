@@ -7,6 +7,7 @@ import co.crisi.bank.exception.ResourceNotFoundException;
 import co.crisi.bank.port.api.AccountServicePort;
 import co.crisi.bank.port.spi.AccountPersistencePort;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import lombok.AllArgsConstructor;
 import lombok.val;
@@ -19,6 +20,10 @@ public class AccountServiceImpl implements AccountServicePort {
     private final BiPredicate<Double, Double> IS_CORRECT_AMOUNT_TO_WITHDRAW
             = (amount, amountToWithdraw) -> amountToWithdraw <= amount;
 
+    private final BiFunction<AccountDto, Long, AccountDto> GET_SIMULATION
+            = (account, months) -> new AccountDto(account.id(),
+            account.amount() + (account.benefit() * account.amount()) * months, account.benefit(), account.type(),
+            account.client());
 
     @Override
     public AccountDto save(AccountDto account) {
@@ -30,12 +35,6 @@ public class AccountServiceImpl implements AccountServicePort {
         return accountPersistencePort.findAll();
     }
 
-    @Override
-    public AccountDto findByClientId(Long clientId) {
-        return accountPersistencePort.findByClientId(clientId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        String.format("Account with client id %d not found", clientId)));
-    }
 
     @Override
     public AccountDto findById(Long id) {
@@ -67,7 +66,7 @@ public class AccountServiceImpl implements AccountServicePort {
 
     @Override
     public void withdraw(Long accountId, Double amount) {
-        val accountDto = findByClientId(accountId);
+        val accountDto = findById(accountId);
         validateAmount(accountDto.amount(), amount);
         val newAccountData = new AccountDto(accountId, accountDto.amount() - amount,
                 accountDto.benefit(), accountDto.type(), accountDto.client());
@@ -86,7 +85,13 @@ public class AccountServiceImpl implements AccountServicePort {
     }
 
     @Override
-    public void simulate(Long months) {
+    public AccountDto simulate(Long clientId, Long months) {
+        return accountPersistencePort.findByClientId(clientId).stream()
+                .filter(account -> AccountTypeDto.CDAT.equals(account.type()))
+                .findFirst()
+                .map(account -> GET_SIMULATION.apply(account, months))
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("The savings account for client %d was not fount", clientId)));
 
     }
 

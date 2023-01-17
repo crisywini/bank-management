@@ -10,8 +10,6 @@ public interface AccountServicePort {
 
     List<AccountDto> findAll();
 
-    AccountDto findByClientId(Long clientId);
-
     AccountDto findById(Long id);
 
     AccountDto findByTypeAndId(Long id, AccountTypeDto accountTypeDto);
@@ -24,6 +22,6 @@ public interface AccountServicePort {
 
     void closeInvestment(Long accountId, Long checkingAccountId);
 
-    void simulate(Long months);
+    AccountDto simulate(Long clientId, Long months);
 
 }

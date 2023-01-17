@@ -11,7 +11,7 @@ public interface AccountPersistencePort {
 
     Optional<AccountDto> findById(Long id);
 
-    Optional<AccountDto> findByClientId(Long clientId);
+    List<AccountDto> findByClientId(Long clientId);
 
     List<AccountDto> findAll();
 
