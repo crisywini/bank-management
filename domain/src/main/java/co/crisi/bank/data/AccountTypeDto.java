@@ -2,6 +2,7 @@ package co.crisi.bank.data;
 
 public enum AccountTypeDto {
 
+    CHECKING(3),
     CDAT(1),
     CDT(2);
 

@@ -1,6 +1,7 @@
 package co.crisi.bank.port.api;
 
 import co.crisi.bank.data.AccountDto;
+import co.crisi.bank.data.AccountTypeDto;
 import java.util.List;
 
 public interface AccountServicePort {
@@ -11,11 +12,17 @@ public interface AccountServicePort {
 
     AccountDto findByClientId(Long clientId);
 
+    AccountDto findById(Long id);
+
+    AccountDto findByTypeAndId(Long id, AccountTypeDto accountTypeDto);
+
+    void update(Long id, AccountDto newAccountDto);
+
     void invest(Long accountId, Double amount);
 
     void withdraw(Long accountId, Double amount);
 
-    void closeInvestment(Long accountId);
+    void closeInvestment(Long accountId, Long checkingAccountId);
 
     void simulate(Long months);
 
