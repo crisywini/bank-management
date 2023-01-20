@@ -12,4 +12,8 @@ public enum AccountTypeDto {
         this.id = id;
 
     }
+
+    public Long getId() {
+        return this.id;
+    }
 }

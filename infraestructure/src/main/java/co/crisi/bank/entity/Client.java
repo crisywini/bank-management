@@ -1,5 +1,6 @@
 package co.crisi.bank.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Client {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Account> accounts;
 
 }
