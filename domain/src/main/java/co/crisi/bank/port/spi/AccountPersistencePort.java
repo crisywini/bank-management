@@ -5,6 +5,10 @@ import co.crisi.bank.data.AccountTypeDto;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The SPI (Service Provider Interface) has all the service required by the domain to retrieve information from third
+ * parties.
+ */
 public interface AccountPersistencePort {
 
     AccountDto save(AccountDto account);
