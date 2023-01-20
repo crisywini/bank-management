@@ -2,7 +2,6 @@ package co.crisi.bank.adapter;
 
 import co.crisi.bank.data.AccountDto;
 import co.crisi.bank.data.AccountTypeDto;
-import co.crisi.bank.entity.Account;
 import co.crisi.bank.exception.ResourceNotFoundException;
 import co.crisi.bank.mapper.AccountMapper;
 import co.crisi.bank.port.spi.AccountPersistencePort;
@@ -54,8 +53,7 @@ public class AccountJpaAdapter implements AccountPersistencePort {
 
     @Override
     public void update(Long id, AccountDto newAccountData) {
-        Optional<AccountDto> findById = findById(id);
-        findById.ifPresent(accountDto -> {
+        findById(id).ifPresent(accountDto -> {
             val account = accountMapper.mapToEntity(accountDto);
             account.setId(accountDto.id());
             accountRepository.save(account);
