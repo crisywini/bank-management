@@ -38,10 +38,8 @@ public class Account {
 
     @ManyToOne
     @JoinTable(name = "client_accounts",
-               joinColumns = @JoinColumn(name = "client_id",
-                                         referencedColumnName = "client_id"),
-               inverseJoinColumns = @JoinColumn(name = "account_id",
-                                                referencedColumnName = "account_id")
+               joinColumns = @JoinColumn(name = "client_id"),
+               inverseJoinColumns = @JoinColumn(name = "account_id")
     )
     private Client client;
 
