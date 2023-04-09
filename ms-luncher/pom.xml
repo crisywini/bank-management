@@ -20,13 +20,26 @@
     <dependency>
       <groupId>co.crisi</groupId>
       <artifactId>domain</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>co.crisi</groupId>
       <artifactId>infraestructure</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+          <mainClass>co.crisi.bank.BankApplication</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

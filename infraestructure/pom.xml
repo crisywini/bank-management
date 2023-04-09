@@ -20,7 +20,7 @@
     <dependency>
       <groupId>co.crisi</groupId>
       <artifactId>domain</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
@@ -33,13 +33,13 @@
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
-      <version>1.4.2.Final</version>
+      <version>${org.mapstruct.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok-mapstruct-binding</artifactId>
-      <version>0.2.0</version>
+      <version>${org.projectlombok.lombok-mapstruct-binding.version}</version>
     </dependency>
 
   </dependencies>
@@ -55,18 +55,18 @@
             <path>
               <groupId>org.mapstruct</groupId>
               <artifactId>mapstruct-processor</artifactId>
-              <version>1.4.2.Final</version>
+              <version>${org.mapstruct.version}</version>
             </path>
             <path>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
-              <version>1.18.22</version>
+              <version>${org.projectlombok.lombok.version}</version>
             </path>
             <!-- This is needed when using Lombok 1.18.16 and above -->
             <path>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok-mapstruct-binding</artifactId>
-              <version>0.2.0</version>
+              <version>${org.projectlombok.lombok-mapstruct-binding.version}</version>
             </path>
           </annotationProcessorPaths>
         </configuration>
