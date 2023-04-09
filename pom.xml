@@ -23,6 +23,9 @@
   <description>Bank</description>
   <properties>
     <java.version>17</java.version>
+    <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+    <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
+    <org.projectlombok.lombok.version>1.18.22</org.projectlombok.lombok.version>
   </properties>
   <dependencies>
     <dependency>
@@ -54,6 +57,7 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>
